@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
                 //Toast.makeText(MainActivity.this, "pizda", Toast.LENGTH_LONG).show();
                 Color color = Color.valueOf(view.getBackgroundTintList().getDefaultColor());
                 lastColor = color;
-                int r = (int) (30 * lastColor.red());
-                int g = (int) (30 * lastColor.green());
-                int b = (int) (30 * lastColor.blue());
+                int r = (int) (255 * lastColor.red());
+                int g = (int) (255 * lastColor.green());
+                int b = (int) (255 * lastColor.blue());
                 String url = "http://10.0.0.135/ledBarva?r="+ r +"&g="+ g +"&b="+ b;
                 new HttpReqTask().execute(url);
             }
@@ -96,11 +96,8 @@ public class MainActivity extends AppCompatActivity {
         new HttpReqTask().execute("http://10.0.0.135/rychle");
     }
 
-    private void SendJas(int aValue){
-        int r = (int) (aValue * lastColor.red());
-        int g = (int) (aValue * lastColor.green());
-        int b = (int) (aValue * lastColor.blue());
-        String url = "http://10.0.0.135/ledBarva?r="+ r +"&g="+ g +"&b="+ b;
+    private void SendJas(int aValueProcent){
+        String url = "http://10.0.0.135/jas?value="+ aValueProcent;
         new HttpReqTask().execute(url);
     }
 
@@ -108,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         SendJas(30);
     }
     public void ClickJasHodne(View view) {
-        SendJas(200);
+        SendJas(90);
     }
 
     public void ClickModeOne(View view) {
